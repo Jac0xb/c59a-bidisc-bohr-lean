@@ -1,0 +1,36 @@
+{
+  "constant": "C_59a",
+  "quantity": "K_2, Bohr radius of the bidisc D^2",
+  "previous_records": {
+    "P2026_lean": "302825279492 / 10^12 = 0.302825279492",
+    "T2026_unrefereed": "3028252794909880 / 10^16 = 0.302825279490988"
+  },
+  "new_world_records": [
+    {
+      "name": "compact_lean_certificate",
+      "r_num": "3028252794909876",
+      "r_den": "10000000000000000",
+      "r_decimal": "0.3028252794909876",
+      "improvement_over_T2026": "4.0e-16",
+      "L": "1000000000",
+      "T": "1226959270",
+      "S_explicit_schur": "100000000000000000000",
+      "N_total_degree": 44,
+      "herglotz_excess_times_1e45": "27290959840691032142430335356",
+      "schur_scaled_excess_times_1e45": "27273894932871613469130717064"
+    },
+    {
+      "name": "sharp_21digit_certificate",
+      "r_num": "302825279490987594822",
+      "r_den": "1000000000000000000000",
+      "r_decimal": "0.302825279490987594822",
+      "improvement_over_T2026": "4.05178e-16",
+      "L": "1000000000000",
+      "T": "1226959270039",
+      "S_explicit_schur": "10000000000000000000000000",
+      "N_total_degree": 56,
+      "herglotz_excess_times_1e45": "873864528328380506700967",
+      "schur_scaled_excess_times_1e45": "873693879250186448887631"
+    }
+  ]
+}
