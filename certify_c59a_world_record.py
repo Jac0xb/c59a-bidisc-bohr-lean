@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-Standalone, zero-dependency (stdlib only), 100% EXACT integer/rational certificate verifier
-for a NEW WORLD RECORD upper bound on C_59a (Bohr radius K_2 of the bidisc D^2).
+Standalone, zero-dependency (stdlib only), exact integer/rational certificate verifier
+for an improved upper bound on C_59a (Bohr radius K_2 of the bidisc D^2).
 
-Live leaderboard records on teorth/optimizationproblems (as of 2026-11-26):
+Prior bounds on teorth/optimizationproblems (as of 2026-11-26):
   - [P2026] (Lean-certified): K_2 < 302825279492 / 10^12 = 0.302825279492
   - [T2026] (unrefereed *):   K_2 < 3028252794909880 / 10^16 = 0.302825279490988
       (required a 149-digit common denominator 3x3 unitary colligation)
 
-New certified world records verified by this script (ZERO floating-point arithmetic):
-  1. Compact Lean-friendly certificate (N=44, 10-digit L, T):
+Certified upper bounds verified by this script (ZERO floating-point arithmetic):
+  1. Compact certificate (N=44, 10-digit L, T):
        K_2 < 3028252794909876 / 10^16 = 0.3028252794909876
-       (beats [T2026] by 4.00e-16; beats [P2026] by 1.0004e-12)
-       - Herglotz witness: L = 10^9, T = 1226959270 (10 digits!)
-       - Explicit finite Schur witness f_S = (S*Q - P)/(S*Q + P) in S_2: S = 10^20 (21 digits!)
+       (improves [T2026] by 4.00e-16; improves [P2026] by 1.0124e-12)
+       - Herglotz witness: L = 10^9, T = 1226959270 (10 digits)
+       - Explicit finite Schur witness f_S = (S*Q - P)/(S*Q + P) in S_2: S = 10^20 (21 digits)
   2. Sharp 21-digit certificate (N=56, 13-digit L, T):
        K_2 < 302825279490987594822 / 10^21 = 0.302825279490987594822
-       (beats [T2026] by 4.05178e-16; beats [P2026] by 1.000405178e-12)
-       - Herglotz witness: L = 10^12, T = 1226959270039 (13 digits!)
-       - Explicit finite Schur witness f_S = (S*Q - P)/(S*Q + P) in S_2: S = 10^25 (26 digits!)
+       (improves [T2026] by 4.05178e-16; improves [P2026] by 1.012405178e-12)
+       - Herglotz witness: L = 10^12, T = 1226959270039 (13 digits)
+       - Explicit finite Schur witness f_S = (S*Q - P)/(S*Q + P) in S_2: S = 10^25 (26 digits)
 
 Mathematical proof summary (all steps elementary & directly Lean-4 formalizable):
   Let U(z,w) = (1+z)(1-w), V(z,w) = 1+zw, P = L*U + i*T*V, Q = L*V + i*T*U (L, T > 0).

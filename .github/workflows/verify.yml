@@ -106,49 +106,8 @@ jobs:
           print(f"[PASS] 0 soundness-affecting tokens; {len(set_opts)} scoped maxRecDepth directives: {set_opts}")
           EOF
 
-      - name: Independent #print axioms and kernel inspection on both headline theorems
-        run: |
-          lake env lean --stdin <<'EOF'
-          import C59a
-          import Lean
-
-          #print axioms Optim.BohrRadius.bohrRadius_lt_3028252794909876_div_10pow16
-          #print axioms Optim.BohrRadius.bohrRadius_lt_302825279490987594822_div_10pow21
-
-          open Lean in
-          #eval show CoreM Unit from do
-            let allowed : List Name := [`propext, `Classical.choice, `Quot.sound]
-            let thms : List Name := [
-              `Optim.BohrRadius.bohrRadius_lt_3028252794909876_div_10pow16,
-              `Optim.BohrRadius.bohrRadius_lt_302825279490987594822_div_10pow21
-            ]
-            let env ← getEnv
-            for nm in thms do
-              let some (.thmInfo info) := env.find? nm
-                | throwError s!"{nm} is not a theorem"
-              if info.value.hasSorry then
-                throwError s!"{nm} contains sorry in proof term"
-              let axs := (← collectAxioms nm).toList
-              for ax in axs do
-                if !allowed.contains ax then
-                  throwError s!"{nm} uses disallowed axiom {ax}"
-              IO.println s!"OK THM {nm}: axioms={axs}"
-            let defs : List Name := [
-              `Optim.BohrRadius.unitBidisc,
-              `Optim.BohrRadius.IsSchur,
-              `Optim.BohrRadius.HasBidiscCoefficients,
-              `Optim.BohrRadius.finiteMajorant,
-              `Optim.BohrRadius.IsBohrAdmissible,
-              `Optim.BohrRadius.bohrRadius
-            ]
-            for nm in defs do
-              let some (.defnInfo info) := env.find? nm
-                | throwError s!"{nm} is not a definition"
-              if info.safety != .safe then
-                throwError s!"{nm} is not DefinitionSafety.safe"
-              IO.println s!"OK DEF {nm}: safe"
-            IO.println "C59A_CI_KERNEL_CHECK_PASS"
-          EOF
+      - name: "Independent #print axioms and ProofAudit.lean kernel gate"
+        run: lake env lean ProofAudit.lean
 
       - name: Independent stdlib Python exact integer verifier
         run: python3 certify_c59a_world_record.py
